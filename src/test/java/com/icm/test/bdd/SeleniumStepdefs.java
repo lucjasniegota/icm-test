@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -42,7 +43,7 @@ public class SeleniumStepdefs {
 
 	@Given("^Dane formularza$")
 	public void Dane_formularza(DataTable arg1) throws Throwable {
-		List<String> textElements = Arrays.asList("text", "password");
+		List<String> textElements = Collections.singletonList("input");
 		Map<String, String> values = arg1.asMap(String.class, String.class);
 		for (Map.Entry<String, String> val : values.entrySet()) {
 			WebElement element = webDriver.findElement(By.id(val.getKey()));
