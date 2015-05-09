@@ -43,7 +43,7 @@ public class SeleniumStepdefs {
 
 	@Given("^Dane formularza$")
 	public void Dane_formularza(DataTable arg1) throws Throwable {
-		List<String> textElements = Collections.singletonList("input");
+		List<String> textElements = Arrays.asList("input", "textarea");
 		Map<String, String> values = arg1.asMap(String.class, String.class);
 		for (Map.Entry<String, String> val : values.entrySet()) {
 			WebElement element = webDriver.findElement(By.id(val.getKey()));
