@@ -95,7 +95,14 @@ public class SeleniumStepdefs {
 	public void Kliknięty_przycisk_save(String arg1) throws Throwable {
 		webDriver.findElement(By.id(arg1)).click();
 	}
-
+	@When("^Kliknięta opcja (.+)$")
+	public void Wybrana_opcja_save(String arg1) throws Throwable {
+		webDriver.findElement(By.xpath("//table[@id='incidents']/tbody/tr/td[5]/div/button")).click();
+	}
+	@When("^Wybrana opcja (.+)$")
+	public void Wybrana_opcja(String arg1) throws Throwable {
+		webDriver.findElement(By.linkText(arg1)).click();
+	}
 	@Then("^Pojawi się komunikat (.+)$")
 	public void Pojawi_się_komunikat(String arg1) throws Throwable {
 		assertNotNull(webDriver.findElement(By.id("alert")));
@@ -120,6 +127,10 @@ public class SeleniumStepdefs {
 		assertNotNull(webDriver.findElement(By.id(arg1)));
 		assertEquals("form-group has-error", webDriver.findElement(By.id(arg1))
 				.findElement(By.xpath("../..")).getAttribute("class"));
+	}
+	@Then("^Zostanie otwarta strona z przyciskiem (.+)$")
+	public void Zostanie_otwarta_strona_z_tytułem(String arg1) throws Throwable {
+		assertNotNull(webDriver.findElement(By.id("create")));
 	}
 
 }
