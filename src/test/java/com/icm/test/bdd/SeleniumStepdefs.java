@@ -96,13 +96,25 @@ public class SeleniumStepdefs {
 		webDriver.findElement(By.id(arg1)).click();
 	}
 	@When("^Kliknięta opcja (.+)$")
-	public void Wybrana_opcja_save(String arg1) throws Throwable {
-		webDriver.findElement(By.xpath("//table[@id='incidents']/tbody/tr/td[5]/div/button")).click();
+	public void Kliknięta_opcja(String arg1) throws Throwable {
+		webDriver.findElement(By.xpath("//td[5]/div/button")).click();
 	}
+	@When("^Kliknieta opcja (.+)$")
+	public void Kliknieta_opcja(String arg1) throws Throwable {
+		webDriver.findElement(By.xpath("//td/form/button")).click();
+	}
+	@Given("^Dodany plik (.+)$")
+	public void Dodany_plik(String arg1) throws Throwable {
+		webDriver.findElement(By.id("file")).clear();
+		webDriver.findElement(By.id("file")).sendKeys("C://Users//domowy/Desktop/given.txt");
+	}
+
 	@When("^Wybrana opcja (.+)$")
-	public void Wybrana_opcja(String arg1) throws Throwable {
+	public void Wybrana_opcja(String arg1) throws Throwable	{
+
 		webDriver.findElement(By.linkText(arg1)).click();
 	}
+
 	@Then("^Pojawi się komunikat (.+)$")
 	public void Pojawi_się_komunikat(String arg1) throws Throwable {
 		assertNotNull(webDriver.findElement(By.id("alert")));
@@ -132,5 +144,13 @@ public class SeleniumStepdefs {
 	public void Zostanie_otwarta_strona_z_tytułem(String arg1) throws Throwable {
 		assertNotNull(webDriver.findElement(By.id("create")));
 	}
+	@Then("^Zostanie otwarta strona z tekstem (.+)$")
+	public void Zostanie_otwarta_strona_z_tekstem(String arg1) throws Throwable {
+		assertNotNull(webDriver.findElement(By.xpath("//h2")));
+	}
 
+	@Then("^Zostanie dodany plik (.+)$")
+	public void Zostanie_dodany_plik(String arg1) throws Throwable {
+		assertNotNull(webDriver.findElement(By.xpath("//tr[4]/td[2]/a")));
+	}
 }
