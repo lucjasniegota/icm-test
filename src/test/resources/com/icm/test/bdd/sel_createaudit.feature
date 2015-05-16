@@ -1,5 +1,14 @@
 Feature: Web, dodawanie audytu
 
+  Scenario: Powinien wyświetlić stronę dodawania audytu
+    Given Aplikacja pod adresem http://localhost:8080/
+    Given Aktualny język to pl
+    Given Użytkownik zalogowany icm-admin@icm.com z hasłem !1
+    Given Sprawdzana strona pod ścieżką /incident/list.html
+    When Kliknięta opcja Akcja
+    When Wybrana opcja Dodaj audyt
+    Then Zostanie otwarta strona z przyciskiem Dodaj audyt
+
   Scenario: Powinien dodać audyt
     Given Aplikacja pod adresem http://localhost:8080/
     Given Aktualny język to pl

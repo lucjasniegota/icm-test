@@ -1,0 +1,19 @@
+Feature: Web, dodawania pliku do incydentu
+
+Scenario: Powinien wyświetlić szczegóły incydentu
+Given Aplikacja pod adresem http://localhost:8080/
+Given Aktualny język to pl
+Given Użytkownik zalogowany icm-admin@icm.com z hasłem !1
+Given Sprawdzana strona pod ścieżką /incident/list.html
+When Kliknięta opcja Akcja
+When Wybrana opcja Szczegóły
+Then Zostanie otwarta strona z tekstem Szczegóły
+
+Scenario: Powinien dodać plik
+Given Aplikacja pod adresem http://localhost:8080/
+Given Aktualny język to pl
+Given Użytkownik zalogowany icm-admin@icm.com z hasłem !1
+Given Sprawdzana strona pod ścieżką /incident/2.html
+  Given Dodany plik given.txt
+When Kliknieta opcja Upload
+  Then Pojawi się komunikat File (.+) uploaded successfully
