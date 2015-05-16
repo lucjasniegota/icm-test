@@ -14,10 +14,10 @@ Given Aplikacja pod adresem http://localhost:8080/
 Given Aktualny język to pl
 Given Użytkownik zalogowany icm-admin@icm.com z hasłem !1
 Given Sprawdzana strona pod ścieżką /incident/2.html
-  Given Dodany plik given.txt
+Given Dodany plik given.txt
 When Kliknięta opcja //td/form/button
-  Then Pojawi się komunikat File (.+) uploaded successfully
-  Then Pojawi się plik given.txt
+Then Pojawi się komunikat File (.+) uploaded successfully
+Then Pojawi się plik given.txt
 
   Scenario: Powinien nie dodać pliku
     Given Aplikacja pod adresem http://localhost:8080/
@@ -27,10 +27,4 @@ When Kliknięta opcja //td/form/button
     When Kliknięta opcja //td/form/button
     Then Pojawi się komunikat (.+)file.empty_pl(.+)
 
-  Scenario: Powinien pobrać plik
-    Given Aplikacja pod adresem http://localhost:8080/
-    Given Aktualny język to pl
-    Given Użytkownik zalogowany icm-admin@icm.com z hasłem !1
-    Given Sprawdzana strona pod ścieżką /incident/2.html
-    When Wybrana opcja //td/form/button
-    Then Pojawi się komunikat (.+)file.empty_pl(.+)
+

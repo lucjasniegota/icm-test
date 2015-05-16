@@ -24,10 +24,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static com.sun.org.apache.xml.internal.security.utils.IdResolver.getElementById;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by lucja on 09.05.15.
@@ -97,7 +94,7 @@ public class SeleniumStepdefs {
 	}
 	@Given("^Dodany plik (.+)$")
 	public void Dodany_plik(String arg1) throws Throwable {
-		webDriver.findElement(By.id("file")).sendKeys("C:\\Users\\domowy\\Desktop\\projekty moje\\bdd-test\\given.txt");
+		webDriver.findElement(By.id("file")).sendKeys("C:\\Users\\domowy\\Desktop\\projekty moje\\bdd-test\\plik\\given.txt");
 	}
 
 	@When("^Kliknięty przycisk (.+)$")
@@ -133,7 +130,16 @@ public class SeleniumStepdefs {
 		assertNotNull(webDriver.findElement(By.id("alert")));
 		assertEquals(arg1, webDriver.findElement(By.id("alert")).getText());
 	}
-
+	@Then("^Pojawi się error w Typie i Opisie (.+)$")
+	public void Pojawi_sie_error_w_Typie_i_Opisie(String arg1) throws Throwable {
+		assertEquals(arg1, webDriver.findElement(By.id("description-error")).getText());
+		assertEquals(arg1, webDriver.findElement(By.id("type-error")).getText());
+	}
+	@Then("^Pojawi się error w Adresie (.+)$")
+	public void Pojawi_sie_error_w_Adresie(String arg1) throws Throwable {
+		assertEquals(arg1, webDriver.findElement(By.id("address-line-error")).getText());
+		assertEquals(arg1, webDriver.findElement(By.id("city-line-error")).getText());
+	}
 	@Then("^Błędne pole (.+)$")
 	public void Bledne_pole(String arg1) throws Throwable {
 		assertNotNull(webDriver.findElement(By.id(arg1)));
@@ -146,11 +152,19 @@ public class SeleniumStepdefs {
 	}
 	@Then("^Zostanie otwarta strona z tekstem (.+)$")
 	public void Zostanie_otwarta_strona_z_tekstem(String arg1) throws Throwable {
-		assertNotNull(webDriver.findElement(By.xpath("//h2")));
+		assertEquals(arg1, webDriver.findElement(By.xpath("//h2")).getText());
 	}
 
 	@Then("^Pojawi się plik (.+)$")
 	public void Pojawi_się_plik(String arg1) throws Throwable {
 		assertNotNull(webDriver.findElement(By.linkText(arg1)));
+	}
+	@Then("^Pojawi się okno z przyciskiem (.+)$")
+	public void Pojawi_się_okno_z_przyciskiem(String arg1) throws Throwable {
+		assertEquals(arg1, webDriver.findElement(By.xpath("(//button[@type='button'])[4]")).getText());
+	}
+	@Then("^Zamknie się okno z przyciskiem (.+)$")
+	public void Zamknie_się_okno_z_przyciskiem(String arg1) throws Throwable {
+		assertNotEquals(arg1, webDriver.findElement(By.xpath("(//button[@type='button'])[4]")).getText());
 	}
 }

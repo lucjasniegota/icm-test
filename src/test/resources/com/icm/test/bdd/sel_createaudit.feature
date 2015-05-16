@@ -8,6 +8,7 @@ Feature: Web, dodawanie audytu
     When Kliknięta opcja //td[5]/div/button
     When Wybrana opcja Dodaj audyt
     Then Zostanie otwarta strona z przyciskiem create
+    Then Zostanie otwarta strona z przyciskiem back
 
   Scenario: Powinien dodać audyt
     Given Aplikacja pod adresem http://localhost:8080/
@@ -20,7 +21,7 @@ Feature: Web, dodawanie audytu
     When Kliknięty przycisk create
     Then Pojawi się komunikat Nowy audyt o id (\d+) został pomyślnie utworzony!
     
-      Scenario: Powinien nie dodać audytu
+      Scenario: Nie powinien dodać audytu
     Given Aplikacja pod adresem http://localhost:8080/
     Given Aktualny język to pl
     Given Użytkownik zalogowany icm-admin@icm.com z hasłem !1
