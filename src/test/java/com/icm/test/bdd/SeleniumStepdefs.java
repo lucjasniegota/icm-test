@@ -1,5 +1,6 @@
 package com.icm.test.bdd;
 
+import com.gargoylesoftware.htmlunit.javascript.host.html.HTMLDocument;
 import cucumber.api.DataTable;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
@@ -7,8 +8,10 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -20,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.sun.org.apache.xml.internal.security.utils.IdResolver.getElementById;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -36,6 +40,7 @@ public class SeleniumStepdefs {
 	private String checkPath;
 	private String user;
 	private String password;
+
 
 	public SeleniumStepdefs() {
 		this.webDriver = new SharedDriver();
@@ -90,28 +95,23 @@ public class SeleniumStepdefs {
 		this.checkPath = arg1;
 		webDriver.navigate().to(this.appAddress + this.checkPath);
 	}
+	@Given("^Dodany plik (.+)$")
+	public void Dodany_plik(String arg1) throws Throwable {
+		webDriver.findElement(By.id("file")).sendKeys("C:\\Users\\domowy\\Desktop\\projekty moje\\bdd-test\\given.txt");
+	}
 
 	@When("^Kliknięty przycisk (.+)$")
 	public void Kliknięty_przycisk_save(String arg1) throws Throwable {
 		webDriver.findElement(By.id(arg1)).click();
+
 	}
 	@When("^Kliknięta opcja (.+)$")
-	public void Kliknięta_opcja(String arg1) throws Throwable {
-		webDriver.findElement(By.xpath("//td[5]/div/button")).click();
-	}
-	@When("^Kliknieta opcja (.+)$")
 	public void Kliknieta_opcja(String arg1) throws Throwable {
-		webDriver.findElement(By.xpath("//td/form/button")).click();
-	}
-	@Given("^Dodany plik (.+)$")
-	public void Dodany_plik(String arg1) throws Throwable {
-		webDriver.findElement(By.id("file")).clear();
-		webDriver.findElement(By.id("file")).sendKeys("C://Users//domowy/Desktop/given.txt");
+		webDriver.findElement(By.xpath(arg1)).click();
 	}
 
 	@When("^Wybrana opcja (.+)$")
 	public void Wybrana_opcja(String arg1) throws Throwable	{
-
 		webDriver.findElement(By.linkText(arg1)).click();
 	}
 
@@ -141,16 +141,16 @@ public class SeleniumStepdefs {
 				.findElement(By.xpath("../..")).getAttribute("class"));
 	}
 	@Then("^Zostanie otwarta strona z przyciskiem (.+)$")
-	public void Zostanie_otwarta_strona_z_tytułem(String arg1) throws Throwable {
-		assertNotNull(webDriver.findElement(By.id("create")));
+	public void Zostanie_otwarta_strona_z_przyciskiem(String arg1) throws Throwable {
+		assertNotNull(webDriver.findElement(By.id(arg1)));
 	}
 	@Then("^Zostanie otwarta strona z tekstem (.+)$")
 	public void Zostanie_otwarta_strona_z_tekstem(String arg1) throws Throwable {
 		assertNotNull(webDriver.findElement(By.xpath("//h2")));
 	}
 
-	@Then("^Zostanie dodany plik (.+)$")
-	public void Zostanie_dodany_plik(String arg1) throws Throwable {
-		assertNotNull(webDriver.findElement(By.xpath("//tr[4]/td[2]/a")));
+	@Then("^Pojawi się plik (.+)$")
+	public void Pojawi_się_plik(String arg1) throws Throwable {
+		assertNotNull(webDriver.findElement(By.linkText(arg1)));
 	}
 }
