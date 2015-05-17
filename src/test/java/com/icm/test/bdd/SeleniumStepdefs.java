@@ -37,6 +37,8 @@ public class SeleniumStepdefs {
 	private String checkPath;
 	private String user;
 	private String password;
+	private String tekst;
+	private String plik;
 
 
 	public SeleniumStepdefs() {
@@ -94,7 +96,8 @@ public class SeleniumStepdefs {
 	}
 	@Given("^Dodany plik (.+)$")
 	public void Dodany_plik(String arg1) throws Throwable {
-		webDriver.findElement(By.id("file")).sendKeys("C:\\Users\\domowy\\Desktop\\projekty moje\\bdd-test\\plik\\given.txt");
+		this.plik=arg1;
+		webDriver.findElement(By.id("file")).sendKeys(this.plik);
 	}
 
 	@When("^Kliknięty przycisk (.+)$")
@@ -115,8 +118,9 @@ public class SeleniumStepdefs {
 
 	@When("^Wpisać tekst (.+)$")
 	public void Wpisac_tekst(String arg1) throws Throwable {
+		this.tekst = arg1;
 		webDriver.findElement(By.xpath("//textarea")).clear();
-		webDriver.findElement(By.xpath("//textarea")).sendKeys("nowy wpis do incydentu");
+		webDriver.findElement(By.xpath("//textarea")).sendKeys(this.tekst);
 	}
 
 	@Then("^Pojawi się komunikat (.+)$")

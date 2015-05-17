@@ -14,7 +14,7 @@ Given Aplikacja pod adresem http://localhost:8080/
 Given Aktualny język to pl
 Given Użytkownik zalogowany icm-admin@icm.com z hasłem !1
 Given Sprawdzana strona pod ścieżką /incident/2.html
-Given Dodany plik given.txt
+Given Dodany plik C:\\Users\\domowy\\Desktop\\projekty moje\\bdd-test\\plik\\given.txt
 When Kliknięta opcja //td/form/button
 Then Pojawi się komunikat File (.+) uploaded successfully
 Then Pojawi się plik given.txt
