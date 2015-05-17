@@ -112,6 +112,13 @@ public class SeleniumStepdefs {
 		webDriver.findElement(By.linkText(arg1)).click();
 	}
 
+
+	@When("^Wpisać tekst (.+)$")
+	public void Wpisac_tekst(String arg1) throws Throwable {
+		webDriver.findElement(By.xpath("//textarea")).clear();
+		webDriver.findElement(By.xpath("//textarea")).sendKeys("nowy wpis do incydentu");
+	}
+
 	@Then("^Pojawi się komunikat (.+)$")
 	public void Pojawi_się_komunikat(String arg1) throws Throwable {
 		assertNotNull(webDriver.findElement(By.id("alert")));
@@ -166,5 +173,16 @@ public class SeleniumStepdefs {
 	@Then("^Zamknie się okno z przyciskiem (.+)$")
 	public void Zamknie_się_okno_z_przyciskiem(String arg1) throws Throwable {
 		assertNotEquals(arg1, webDriver.findElement(By.xpath("(//button[@type='button'])[4]")).getText());
+	}
+
+	@Then("^Na stronie pojawi się tekst (.+)$")
+	public void Na_stronie_pojawi_się_tekst(String arg1) throws Throwable {
+		assertEquals(arg1, webDriver.findElement(By.xpath("//td/div")).getText());
+	}
+
+
+	@Then("^Na stronie nie będzie tekstu(.+)$")
+	public void Na_stronie_nie_będzie_tekstu(String arg1) throws Throwable {
+		assertNotEquals(arg1, webDriver.findElement(By.xpath("//td/div")).getText());
 	}
 }
