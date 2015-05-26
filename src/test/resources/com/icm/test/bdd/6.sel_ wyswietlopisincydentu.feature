@@ -6,7 +6,7 @@ Given Aktualny język to pl
 Given Użytkownik zalogowany icm-admin@icm.com z hasłem !1
 Given Sprawdzana strona pod ścieżką /incident/2.html
 When Kliknięta opcja (//button[@type='button'])[2]
-Then Na stronie pojawi się tekst Lorem ipsum
+Then Na stronie pojawi się tekst Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 
   Scenario: Dodanie tekstu do opisu incydentu
